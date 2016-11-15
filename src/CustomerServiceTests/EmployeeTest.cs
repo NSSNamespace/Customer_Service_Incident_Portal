@@ -23,8 +23,8 @@ namespace CustomerServiceTests
 
         public void TrueTest()
         {
-            bool IsMonday = true;
-            Assert.True(IsMonday);
+            bool isTrue = true;
+            Assert.True(isTrue);
         }
 
         [Fact]
@@ -40,5 +40,21 @@ namespace CustomerServiceTests
         {
             Assert.NotNull(employee.DepartmentName);
         }
+
+        [Fact]
+
+        public void EmployeeHasFirstNameAndLastName()
+        {
+            Assert.NotNull(employee.FirstName);
+            Assert.NotNull(employee.LastName);
+        }
+
+        [Fact]
+
+        public void EmployeeHasId ()
+        {
+            Assert.NotNull(employee.EmployeeId);
+        }
+
     }
 }

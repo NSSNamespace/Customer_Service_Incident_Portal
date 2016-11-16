@@ -32,5 +32,10 @@ namespace CustomerService
         public Employee Employee { get; set; }
 
         public int EmployeeId { get; set; }
+
+        public void save ()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

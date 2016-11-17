@@ -6,13 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CustomerService
 {
-    public class Order
+    public class Department
     {
-        public int OrderId { get; set; }
+        [Key]
+        public int DepartmentId { get; set; }
 
-        public int CustomerId { get; set; }
-
-        public DateTime DateCreated { get; set; }
-
+        public string Label { get; set; }
     }
 }

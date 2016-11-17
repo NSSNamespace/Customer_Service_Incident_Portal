@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using CustomerServiceConsole;
+using CustomerService;
 
 namespace CustomerServiceTests
 {
@@ -58,8 +58,16 @@ namespace CustomerServiceTests
             Assert.Equal(employee.EmployeeId, 123);
         }
 
-        public void CanGetEmployeeById ()
+        [Fact]
+        public void CanGetEmployeeByName ()
         {
+            EmployeeFactory EmFac = new EmployeeFactory();
+            Employee oneEmployee = EmFac.getSingleEmployee("john smith");
+
+            Assert.NotNull(oneEmployee);
+            Assert.Equal(oneEmployee.FirstName, "john");
+            Assert.Equal(oneEmployee.LastName, "smith");
+          
             
         }
 

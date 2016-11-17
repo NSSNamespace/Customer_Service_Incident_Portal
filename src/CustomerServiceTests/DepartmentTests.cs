@@ -27,5 +27,23 @@ namespace CustomerServiceTests
             Assert.Equal(newDepartment.DepartmentId, 444444444);
 
          }
+
+        [Fact]
+        public void CanGetListOfDepartments()
+        {
+            DepartmentFactory newDF = new DepartmentFactory();
+            var departmentlist = newDF.getAll();
+            Assert.NotNull(departmentlist);
+
+            foreach (var department in departmentlist)
+            {
+                Assert.NotNull(department);
+                Assert.True(department.GetType() == typeof(Department));
+                Assert.True(department.DepartmentId.GetType() == typeof(int));
+                Assert.NotNull(department.Label);
+                Assert.NotNull(department.DepartmentId);
+            }
+
+        }
     }
 }

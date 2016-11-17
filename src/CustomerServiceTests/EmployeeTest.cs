@@ -62,14 +62,26 @@ namespace CustomerServiceTests
         public void CanGetEmployeeByName ()
         {
             EmployeeFactory EmFac = new EmployeeFactory();
-            Employee oneEmployee = EmFac.getSingleEmployee("john smith");
+            Employee oneEmployee = EmFac.get("john smith");
 
             Assert.NotNull(oneEmployee);
             Assert.Equal(oneEmployee.FirstName, "john");
             Assert.Equal(oneEmployee.LastName, "smith");
           
-            
         }
+        [Fact]
+        public void CanSaveAnEmployee()
+        {
+            Employee emp = new Employee();
+            emp.FirstName = "GJerome";
+            emp.LastName = "GJeraldo";
+            emp.DepartmentName = "GJeriatrics";
+            emp.EmployeeId = 123;
 
+            emp.save();
+            EmployeeFactory empfac = new EmployeeFactory();
+            var name = "GJerome GJeraldo";
+            var shouldBeGJ = empfac.get(name);
+        }
     }
 }

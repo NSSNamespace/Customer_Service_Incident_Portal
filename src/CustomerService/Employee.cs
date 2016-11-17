@@ -8,8 +8,6 @@ namespace CustomerService
 {
     public class Employee
     {
-        [Key]
-
         public int EmployeeId { get; set; }
 
         public string FirstName { get; set; }
@@ -17,5 +15,26 @@ namespace CustomerService
         public string LastName { get; set; }
 
         public string DepartmentName { get; set; }
+
+        public void save()
+        {
+            BangazonConnection conn = new BangazonConnection();
+
+            Employee emp = new Employee();
+
+            string query = string.Format(@"
+			insert into Employee 
+			  (FirstName, LastName, EmployeeId, DepartmentName)
+			values 
+			  ('{0}', '{1}', '{2}', '{3}');
+			",
+                this.FirstName,
+                this.LastName,
+                this.EmployeeId,
+                this.DepartmentName
+            );
+
+            conn.insert(query);
+        }
     }
 }

@@ -9,30 +9,31 @@ namespace CustomerService
 {
     public class BangazonConnection
     {
-        private string _connectionString = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangazon_Db_Path2");
+        private string _connectionString1 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangazon_Db_Path1");
+        private string _connectionString2 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangqzon_Db_Path2");
 
         public void insert(string query)
         {
-            SqliteConnection dbcon = new SqliteConnection(_connectionString);
+            SqliteConnection dbcon2 = new SqliteConnection(_connectionString2);
 
-            dbcon.Open();
-            SqliteCommand dbcmd = dbcon.CreateCommand();
+            dbcon2.Open();
+            SqliteCommand dbcmd = dbcon2.CreateCommand();
 
             dbcmd.CommandText = query;
             dbcmd.ExecuteNonQuery();
 
             // clean up
             dbcmd.Dispose();
-            dbcon.Close();
+            dbcon2.Close();
         }
 
         public void execute(string query, Action<SqliteDataReader> handler)
         {
 
-            SqliteConnection dbcon = new SqliteConnection(_connectionString);
+            SqliteConnection dbcon1 = new SqliteConnection(_connectionString1);
 
-            dbcon.Open();
-            SqliteCommand dbcmd = dbcon.CreateCommand();
+            dbcon1.Open();
+            SqliteCommand dbcmd = dbcon1.CreateCommand();
             dbcmd.CommandText = query;
 
             using (var reader = dbcmd.ExecuteReader())
@@ -42,7 +43,26 @@ namespace CustomerService
 
             // clean up
             dbcmd.Dispose();
-            dbcon.Close();
+            dbcon1.Close();
+        }
+
+        public void executeNewDb(string query, Action<SqliteDataReader> handler)
+        {
+
+            SqliteConnection dbcon2 = new SqliteConnection(_connectionString2);
+
+            dbcon2.Open();
+            SqliteCommand dbcmd = dbcon2.CreateCommand();
+            dbcmd.CommandText = query;
+
+            using (var reader = dbcmd.ExecuteReader())
+            {
+                handler(reader);
+            }
+
+            // clean up
+            dbcmd.Dispose();
+            dbcon2.Close();
         }
     }
 }

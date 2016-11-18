@@ -6,44 +6,21 @@ using Microsoft.Data.Sqlite;
 
 namespace CustomerService
 {
-    public class BangazonConnection
+    public class DatabaseSeed
     {
-        public static string _path = "Data Source=" + Environment.GetEnvironmentVariable("Bangazon_Db_Path2");
-
-        public static void doesDbExist()
-        {
-            SqliteConnection dbcon = new SqliteConnection(_path);
-
-            dbcon.Open();
-            SqliteCommand dbcmd = dbcon.CreateCommand();
-
-            dbcmd.CommandText = @"SELECT * FROM employee";
-
-            var dbData = dbcmd.ExecuteReader();
-
-            if (dbData == null)
-            {
-                createTables();
-            }
-            else
-            {
-                // clean up
-                dbcmd.Dispose();
-                dbcon.Close();
-            }
-        }
-
-
+        private static string _connectionString2 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangazon_Db_Path2");
         public static void createTables()
         {
 
 
-            SqliteConnection dbcon = new SqliteConnection(_path);
+            try
+            {
+                SqliteConnection dbcon = new SqliteConnection(_connectionString2);
 
-            dbcon.Open();
-            SqliteCommand dbcmd = dbcon.CreateCommand();
+                dbcon.Open();
+                SqliteCommand dbcmd = dbcon.CreateCommand();
 
-            dbcmd.CommandText = @"
+                dbcmd.CommandText = @"
                 CREATE TABLE Employee
                 (
                     EmployeeId integer NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -132,18 +109,23 @@ namespace CustomerService
                     1235, 5679, 2, 'Advised customer not to reproduce', 2
                 );"
 
-;
+                ;
 
 
 
 
 
-            dbcmd.ExecuteNonQuery();
+                dbcmd.ExecuteNonQuery();
 
 
-            // clean up
-            dbcmd.Dispose();
-            dbcon.Close();
+                // clean up
+                dbcmd.Dispose();
+                dbcon.Close();
+            }
+            catch (Microsoft.Data.Sqlite.SqliteException)
+            {
+
+            }
         }
     }
 }

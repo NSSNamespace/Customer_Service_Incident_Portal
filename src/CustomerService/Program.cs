@@ -10,7 +10,7 @@ namespace CustomerService
         public static void Main(string[] args)
         {
 
-            BangazonConnection.doesDbExist();
+            DatabaseSeed.createTables();
 
         }
         

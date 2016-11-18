@@ -10,7 +10,7 @@ namespace CustomerService
     public class BangazonConnection
     {
         private string _connectionString1 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangazon_Db_Path1");
-        private string _connectionString2 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangqzon_Db_Path2");
+        private string _connectionString2 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangazon_Db_Path2");
 
         public void insert(string query)
         {

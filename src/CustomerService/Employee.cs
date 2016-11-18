@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CustomerServiceConsole
+namespace CustomerService
 {
     public class Employee
     {

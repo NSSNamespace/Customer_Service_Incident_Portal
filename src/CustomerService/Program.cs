@@ -10,6 +10,7 @@ namespace CustomerService
         public static void Main(string[] args)
         {
 
+            // call method to seed database
             DatabaseSeed.createTables();
 
         }

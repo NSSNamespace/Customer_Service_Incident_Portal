@@ -6,13 +6,19 @@ using Microsoft.Data.Sqlite;
 
 namespace CustomerService
 {
+    //
+    // Class: DatabaseSeed
+    // Purpose: Seed database with initial data, or handle errors if data exists
+    // Author: Elliott Williams
+    // Methods:
+    //          CreateTables() - Attempts to send initial data to database ('try' block); handles sqlite error if data already exists ('catch' block)
+    //
+
     public class DatabaseSeed
     {
         private static string _connectionString2 = "Data Source=" + System.Environment.GetEnvironmentVariable("Bangazon_Db_Path2");
         public static void createTables()
         {
-
-
             try
             {
                 SqliteConnection dbcon = new SqliteConnection(_connectionString2);
@@ -121,8 +127,10 @@ namespace CustomerService
                 // clean up
                 dbcmd.Dispose();
                 dbcon.Close();
+
+
             }
-            catch (Microsoft.Data.Sqlite.SqliteException)
+            catch (SqliteException)
             {
 
             }

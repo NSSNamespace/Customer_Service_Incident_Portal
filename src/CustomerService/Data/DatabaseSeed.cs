@@ -130,9 +130,9 @@ namespace CustomerService
 
 
             }
-            catch (SqliteException)
+            catch (SqliteException ex)
             {
-
+                Console.WriteLine(ex);
             }
         }
     }

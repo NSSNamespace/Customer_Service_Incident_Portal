@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using CustomerServiceConsole;
+using CustomerService;
 
 namespace CustomerServiceTests
 {
@@ -39,14 +39,15 @@ namespace CustomerServiceTests
         public void EmployeeHasDepartment ()
         {
             Assert.NotNull(employee.DepartmentName);
+            Assert.Equal(employee.DepartmentName, "Accounting");
         }
 
         [Fact]
 
         public void EmployeeHasFirstNameAndLastName()
         {
-            Assert.NotNull(employee.FirstName);
-            Assert.NotNull(employee.LastName);
+            Assert.Equal(employee.FirstName, "Bob");
+            Assert.Equal(employee.LastName, "Dole");
         }
 
         [Fact]
@@ -54,7 +55,33 @@ namespace CustomerServiceTests
         public void EmployeeHasId ()
         {
             Assert.NotNull(employee.EmployeeId);
+            Assert.Equal(employee.EmployeeId, 123);
         }
 
+        [Fact]
+        public void CanGetEmployeeByName ()
+        {
+            EmployeeFactory EmFac = new EmployeeFactory();
+            Employee oneEmployee = EmFac.get("john smith");
+
+            Assert.NotNull(oneEmployee);
+            Assert.Equal(oneEmployee.FirstName, "john");
+            Assert.Equal(oneEmployee.LastName, "smith");
+          
+        }
+        [Fact]
+        public void CanSaveAnEmployee()
+        {
+            Employee emp = new Employee();
+            emp.FirstName = "GJerome";
+            emp.LastName = "GJeraldo";
+            emp.DepartmentName = "GJeriatrics";
+            emp.EmployeeId = 123;
+
+            emp.save();
+            EmployeeFactory empfac = new EmployeeFactory();
+            var name = "GJerome GJeraldo";
+            var shouldBeGJ = empfac.get(name);
+        }
     }
 }

@@ -41,34 +41,36 @@ namespace CustomerService
 
 
         // Get a single employee
-        public Employee get(string fullName)
+        public Employee get(string FullName)
         {
-            string[] FullNameArr = Regex.Split(fullName, @"\s+").Where(s => s != string.Empty).ToArray();
-            string FirstName = FullNameArr[0];
-            string LastName = FullNameArr[1];
+            string[] FullNameArray = Regex.Split(FullName, @"\s+").Where(s => s != string.Empty).ToArray();
+            string FirstName = FullNameArray[0];
+            string LastName = FullNameArray[1];
+
+
 
             BangazonConnection conn = new BangazonConnection();
             Employee e = null;
-
-            conn.execute(@"select 
-				EmployeeId,
-				FirstName, 
-				LastName, 
-				DepartmentName,
-                FROM Employee,
-                WHERE FirstName = '" + FirstName + "' AND " + "LastName = '" + LastName + "'",
-                (SqliteDataReader reader) => {
-                while (reader.Read())
+            conn.executeNewDb(@"select 
+ 		       EmployeeId,
+ 			    FirstName, 
+ 				LastName, 
+ 			    DepartmentName
+               FROM Employee
+               WHERE FirstName = '" + FirstName + "' AND " + "LastName = '" + LastName + "'",
+                (SqliteDataReader reader) =>
                 {
-                    e = new Employee
+                    while (reader.Read())
                     {
-                        EmployeeId = reader.GetInt32(0),
-                        FirstName = reader[1].ToString(),
-                        LastName = reader[2].ToString(),
-                        DepartmentName = reader[3].ToString()
-                    };
-                }
-            });
+                        e = new Employee
+                        {
+                            EmployeeId = reader.GetInt32(0),
+                            FirstName = reader[1].ToString(),
+                            LastName = reader[2].ToString(),
+                            DepartmentName = reader[3].ToString()
+                        };
+                    }
+                });
 
             return e;
         }

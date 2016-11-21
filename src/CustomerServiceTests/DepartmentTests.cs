@@ -32,7 +32,7 @@ namespace CustomerServiceTests
         public void CanGetListOfDepartments()
         {
             DepartmentFactory newDF = new DepartmentFactory();
-            var departmentlist = newDF.getAll();
+            var departmentlist = newDF.GetAll();
             Assert.NotNull(departmentlist);
 
             foreach (var department in departmentlist)

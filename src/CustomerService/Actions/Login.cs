@@ -11,6 +11,8 @@ namespace CustomerService
         {
 
             EmployeeFactory employeeFactory = EmployeeFactory.Instance;
+            DepartmentFactory departmentFactory = DepartmentFactory.Instance;
+
             string Banner = "====================================";
             string Greeting = "BANGAZON INC CUSTOMER SERVICE PORTAL";
             string NamePlease = "Enter your first and last name to start. Type 'new user' to create a new user account.";
@@ -45,8 +47,14 @@ namespace CustomerService
                 newEmployee.FirstName = Console.ReadLine();
                 Console.WriteLine("Last Name\r\n>");
                 newEmployee.LastName = Console.ReadLine();
-                Console.WriteLine("Department Name\r\n");
-                newEmployee.DepartmentName = Console.ReadLine();
+                List<Department> depList = departmentFactory.GetAll();
+                Console.WriteLine("Please select your department Id\r\n>");
+                foreach(Department department in depList)
+                {
+                    Console.WriteLine("Deparment Name: " + department.Label + "Id: " + department.DepartmentId);
+                }
+                var employeeDepartmentId = Convert.ToInt32(Console.ReadLine());
+                newEmployee.DepartmentId = employeeDepartmentId;
                 newEmployee.save();
                 Console.ReadLine();
 

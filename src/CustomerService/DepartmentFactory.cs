@@ -7,11 +7,26 @@ namespace CustomerService
 {
     public class DepartmentFactory
     {
-        public List<Department> Get()
+
+        private static DepartmentFactory _instance;
+
+        public static DepartmentFactory Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new DepartmentFactory();
+                }
+                return _instance;
+            }
+        }
+
+        public List<Department> GetAll()
         {
             BangazonConnection conn = new BangazonConnection();
             List<Department> Departments = new List<Department>();
-            conn.execute("SELECT DepartmentId, Label FROM Departments",
+            conn.executeNewDb("SELECT DepartmentId, Label FROM Department",
             (SqliteDataReader reader) =>
             {
                 while (reader.Read())

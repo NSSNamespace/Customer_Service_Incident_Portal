@@ -149,13 +149,8 @@ namespace CustomerService
                 (
                     1235, 5679, 2, 'Advised customer not to reproduce', 2
                 );"
-;
+                ;
                 
-
-
-
-
-
                 dbcmd.ExecuteNonQuery();
 
 

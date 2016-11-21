@@ -55,7 +55,7 @@ namespace CustomerService
  		       EmployeeId,
  			   FirstName, 
  			   LastName, 
- 			   DepartmentName
+ 			   DepartmentId
                FROM Employee
                WHERE FirstName = '" + FirstName + "' AND " + "LastName = '" + LastName + "'",
                 (SqliteDataReader reader) =>
@@ -67,7 +67,7 @@ namespace CustomerService
                             EmployeeId = reader.GetInt32(0),
                             FirstName = reader[1].ToString(),
                             LastName = reader[2].ToString(),
-                            DepartmentName = reader[3].ToString()
+                            DepartmentId = reader.GetInt32(3)
                         };
                     }
                 });

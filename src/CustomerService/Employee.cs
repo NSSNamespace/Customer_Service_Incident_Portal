@@ -24,13 +24,13 @@ namespace CustomerService
 
             string query = string.Format(@"
 			insert into Employee 
-			  (FirstName, LastName, EmployeeId, DepartmentName)
+			  (FirstName, LastName, DepartmentName)
 			values 
-			  ('{0}', '{1}', '{2}', '{3}');
+			  ('{0}', '{1}', '{2}');
 			",
                 this.FirstName,
                 this.LastName,
-                this.EmployeeId,
+                //this.EmployeeId,
                 this.DepartmentName
             );
 

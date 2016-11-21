@@ -10,38 +10,52 @@ namespace CustomerService
         public static void UserLogin()
         {
 
-        EmployeeFactory employeeFactory = EmployeeFactory.Instance;
-        string Banner = "***********************************************";
-        string Greeting = "Welcome to the Bangazon Customer Service Portal!";
-        string NamePlease = "Please enter your name or type 'Create User' to create an account.";
-        Console.WriteLine(Banner);
-        Console.WriteLine(Greeting + "\r\n" + NamePlease);
-            Console.WriteLine(Banner);
-        var EmployeeName = Console.ReadLine();
+            EmployeeFactory employeeFactory = EmployeeFactory.Instance;
+            string Banner = "====================================";
+            string Greeting = "BANGAZON INC CUSTOMER SERVICE PORTAL";
+            string NamePlease = "Enter your first and last name to start. Type 'new user' to create a new user account.";
+         
+            Console.WriteLine(Banner + "\r\n" + Greeting + "\r\n" + Banner + "\r\n" + NamePlease + "\r\n>");
+            var EmployeeName = Console.ReadLine();
 
-            if (EmployeeName != "Create User")
+            if (EmployeeName != "new user")
             {
-                Employee CurrentEmployee = employeeFactory.get(EmployeeName);
-                employeeFactory.ActiveEmployee = CurrentEmployee;
-                Console.WriteLine("Welcome " + CurrentEmployee.FirstName + " " + CurrentEmployee.LastName + "!");
-                Console.ReadLine();
-            }
+                try
+                {
+                    Employee CurrentEmployee = employeeFactory.get(EmployeeName);
+                    employeeFactory.ActiveEmployee = CurrentEmployee;
+                    Console.WriteLine("Welcome " + CurrentEmployee.FirstName + " " + CurrentEmployee.LastName + "!");
+                    Console.ReadLine();
+                }
 
-            else if (EmployeeName == "Create User");
- 
+                catch
+                {
+                    Console.WriteLine("The employee name you have entered appears to be invalid. Please try again.");
+                    UserLogin();
+                }
+
+                }
+
+            else if (EmployeeName == "new user")
+
             {
 
                 Employee newEmployee = new Employee();
-                Console.WriteLine("Please enter your first name");
+                Console.WriteLine("First Name\r\n>");
                 newEmployee.FirstName = Console.ReadLine();
-                Console.WriteLine("Please enter your last name");
+                Console.WriteLine("Last Name\r\n>");
                 newEmployee.LastName = Console.ReadLine();
-                Console.WriteLine("Please enter your employee id");
-                newEmployee.EmployeeId = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Please enter your department name");
+                Console.WriteLine("Department Name\r\n");
                 newEmployee.DepartmentName = Console.ReadLine();
                 newEmployee.save();
+                Console.ReadLine();
 
+            }
+
+            else
+            {
+                Console.WriteLine("Invalid input. Please try again.");
+                UserLogin();
             }
         }
     }

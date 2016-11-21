@@ -30,7 +30,6 @@ namespace CustomerService
 			",
                 this.FirstName,
                 this.LastName,
-                //this.EmployeeId,
                 this.DepartmentName
             );
 

@@ -1,17 +1,30 @@
 ﻿using CustomerService;
 using System;
 using System.Collections.Generic;
+using Microsoft.Data.Sqlite;
 
-namespace CustomerServiceTests
+namespace CustomerService
 {
     public class DepartmentFactory
     {
-        public List<Department> getAll() 
+        public List<Department> Get()
         {
-            List<Department> list = new List<Department>();
-
-            return list; 
-
+            BangazonConnection conn = new BangazonConnection();
+            List<Department> Departments = new List<Department>();
+            conn.execute("SELECT DepartmentId, Label FROM Departments",
+            (SqliteDataReader reader) =>
+            {
+                while (reader.Read())
+                {
+                    Departments.Add(new Department
+                    {
+                        DepartmentId = reader.GetInt32(0),
+                        Label = reader[1].ToString(),
+                    });
+                }
+            });
+            return Departments;
         }
+
     }
 }

@@ -36,6 +36,12 @@ namespace CustomerService
                     IsAdmin integer
                 );
 
+                  CREATE TABLE Department
+                (
+                    DepartmentId integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                    Label string
+                );
+
                 CREATE TABLE Incident
                 (
                     IncidentId integer NOT NULL PRIMARY KEY AUTOINCREMENT,

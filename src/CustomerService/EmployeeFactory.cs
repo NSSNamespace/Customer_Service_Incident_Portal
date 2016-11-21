@@ -53,9 +53,9 @@ namespace CustomerService
             Employee e = null;
             conn.executeNewDb(@"select 
  		       EmployeeId,
- 			    FirstName, 
- 				LastName, 
- 			    DepartmentName
+ 			   FirstName, 
+ 			   LastName, 
+ 			   DepartmentName
                FROM Employee
                WHERE FirstName = '" + FirstName + "' AND " + "LastName = '" + LastName + "'",
                 (SqliteDataReader reader) =>

@@ -28,7 +28,19 @@ namespace CustomerService
             }
 
             else if (EmployeeName == "Create User");
+ 
             {
+
+                Employee newEmployee = new Employee();
+                Console.WriteLine("Please enter your first name");
+                newEmployee.FirstName = Console.ReadLine();
+                Console.WriteLine("Please enter your last name");
+                newEmployee.LastName = Console.ReadLine();
+                Console.WriteLine("Please enter your employee id");
+                newEmployee.EmployeeId = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("Please enter your department name");
+                newEmployee.DepartmentName = Console.ReadLine();
+                newEmployee.save();
 
             }
         }

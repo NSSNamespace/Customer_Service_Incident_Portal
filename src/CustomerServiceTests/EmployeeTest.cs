@@ -15,7 +15,7 @@ namespace CustomerServiceTests
             EmployeeId = 123,
             FirstName = "Bob",
             LastName = "Dole",
-            DepartmentName = "Accounting"
+            DepartmentId = 2
 
         };
 
@@ -38,8 +38,8 @@ namespace CustomerServiceTests
 
         public void EmployeeHasDepartment ()
         {
-            Assert.NotNull(employee.DepartmentName);
-            Assert.Equal(employee.DepartmentName, "Accounting");
+            Assert.NotNull(employee.DepartmentId);
+            Assert.Equal(employee.DepartmentId, 2);
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace CustomerServiceTests
             Employee emp = new Employee();
             emp.FirstName = "GJerome";
             emp.LastName = "GJeraldo";
-            emp.DepartmentName = "GJeriatrics";
+            emp.DepartmentId = 3;
             emp.EmployeeId = 123;
 
             emp.save();

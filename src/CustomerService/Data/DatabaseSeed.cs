@@ -32,8 +32,14 @@ namespace CustomerService
                     EmployeeId integer NOT NULL PRIMARY KEY AUTOINCREMENT,
                     FirstName string,
                     LastName string,
-                    DepartmentName string,
+                    DepartmentId integer,
                     IsAdmin integer
+                );
+
+                  CREATE TABLE Department
+                (
+                    DepartmentId integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+                    Label string
                 );
 
                 CREATE TABLE Incident
@@ -54,40 +60,69 @@ namespace CustomerService
                     Label string
                 );
 
-                INSERT INTO Employee
+
+                INSERT INTO Department
                 (
-                FirstName, LastName, DepartmentName, IsAdmin
+                Label
                 )
                 VALUES
                 (
-                'Bob', 'Bobson', 'IT', 0
+                'Beginner Customer Service'
+                );
+
+                INSERT INTO Department
+                (
+                Label
+                )
+                VALUES
+                (
+                'Intermediate Customer Service'
+                );
+
+                INSERT INTO Department
+                (
+                Label
+                )
+                VALUES
+                (
+                'Advanced Customer Service'
+                );
+
+
+                INSERT INTO Employee
+                (
+                FirstName, LastName, DepartmentId, IsAdmin
+                )
+                VALUES
+                (
+                'Bob', 'Bobson', '2', 1
                 );
 
                 INSERT INTO Employee
                 (
-                FirstName, LastName, DepartmentName, IsAdmin
+                FirstName, LastName, DepartmentId, IsAdmin
                 )
                 VALUES
                 (
-                'Rob', 'Bobson', 'Customer Service', 1
+                'Rob', 'Bobson', '1', 0
                 );
 
                 INSERT INTO Employee
                 (
-                FirstName, LastName, DepartmentName, IsAdmin
+                FirstName, LastName, DepartmentId, IsAdmin
                 )
                 VALUES
                 (
-                'Bob', 'Robson', 'Customer Success Department', 0
+                'Bob', 'Robson', '2', 0
                 );
 
                 INSERT INTO Employee
                 (
-                FirstName, LastName, DepartmentName, IsAdmin
+                FirstName, LastName, DepartmentId, IsAdmin
                 )
                 VALUES
                 (
-                'Rob', 'Robson', 'Customer Wow', 1
+                'Rob', 'Robson', '3', 1
                 );
 
                 INSERT INTO IncidentType (Label) VALUES ('Defective Product');
@@ -114,13 +149,8 @@ namespace CustomerService
                 (
                     1235, 5679, 2, 'Advised customer not to reproduce', 2
                 );"
-
                 ;
-
-
-
-
-
+                
                 dbcmd.ExecuteNonQuery();
 
 

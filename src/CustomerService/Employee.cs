@@ -14,7 +14,7 @@ namespace CustomerService
 
         public string LastName { get; set; }
 
-        public string DepartmentName { get; set; }
+        public int DepartmentId { get; set; }
 
         public void save()
         {
@@ -24,14 +24,13 @@ namespace CustomerService
 
             string query = string.Format(@"
 			insert into Employee 
-			  (FirstName, LastName, EmployeeId, DepartmentName)
+			  (FirstName, LastName, DepartmentId)
 			values 
-			  ('{0}', '{1}', '{2}', '{3}');
+			  ('{0}', '{1}', '{2}');
 			",
                 this.FirstName,
                 this.LastName,
-                this.EmployeeId,
-                this.DepartmentName
+                this.DepartmentId
             );
 
             conn.insert(query);

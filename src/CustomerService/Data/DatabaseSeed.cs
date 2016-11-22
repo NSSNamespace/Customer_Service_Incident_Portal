@@ -95,7 +95,7 @@ namespace CustomerService
                 )
                 VALUES
                 (
-                'Bob', 'Bobson', '0', 0
+                'Bob', 'Bobson', '2', 1
                 );
 
                 INSERT INTO Employee
@@ -104,7 +104,7 @@ namespace CustomerService
                 )
                 VALUES
                 (
-                'Rob', 'Bobson', '1', 1
+                'Rob', 'Bobson', '1', 0
                 );
 
                 INSERT INTO Employee
@@ -122,7 +122,7 @@ namespace CustomerService
                 )
                 VALUES
                 (
-                'Rob', 'Robson', '0', 1
+                'Rob', 'Robson', '3', 1
                 );
 
                 INSERT INTO IncidentType (Label) VALUES ('Defective Product');
